@@ -19,4 +19,5 @@ func init() {
 
 func main() {
 	slog.Info("hello world", "count", 1)
+
 }
