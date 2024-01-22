@@ -39,31 +39,31 @@ func (m *MockLogParserService) EXPECT() *MockLogParserServiceMockRecorder {
 }
 
 // GetGamesStatistics mocks base method.
-func (m *MockLogParserService) GetGamesStatistics(game int) (map[string]domain.MatchStatistics, error) {
+func (m *MockLogParserService) GetGamesStatistics(game int, logger []byte) (map[string]domain.MatchStatistics, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetGamesStatistics", game)
+	ret := m.ctrl.Call(m, "GetGamesStatistics", game, logger)
 	ret0, _ := ret[0].(map[string]domain.MatchStatistics)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetGamesStatistics indicates an expected call of GetGamesStatistics.
-func (mr *MockLogParserServiceMockRecorder) GetGamesStatistics(game any) *gomock.Call {
+func (mr *MockLogParserServiceMockRecorder) GetGamesStatistics(game, logger any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGamesStatistics", reflect.TypeOf((*MockLogParserService)(nil).GetGamesStatistics), game)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetGamesStatistics", reflect.TypeOf((*MockLogParserService)(nil).GetGamesStatistics), game, logger)
 }
 
 // GetKillsByMeans mocks base method.
-func (m *MockLogParserService) GetKillsByMeans(game int) (map[string]domain.MatchDeathStatistics, error) {
+func (m *MockLogParserService) GetKillsByMeans(game int, logger []byte) (map[string]domain.MatchDeathStatistics, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetKillsByMeans", game)
+	ret := m.ctrl.Call(m, "GetKillsByMeans", game, logger)
 	ret0, _ := ret[0].(map[string]domain.MatchDeathStatistics)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetKillsByMeans indicates an expected call of GetKillsByMeans.
-func (mr *MockLogParserServiceMockRecorder) GetKillsByMeans(game any) *gomock.Call {
+func (mr *MockLogParserServiceMockRecorder) GetKillsByMeans(game, logger any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKillsByMeans", reflect.TypeOf((*MockLogParserService)(nil).GetKillsByMeans), game)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetKillsByMeans", reflect.TypeOf((*MockLogParserService)(nil).GetKillsByMeans), game, logger)
 }

@@ -21,12 +21,28 @@ type MatchData struct {
 	Hostname string
 	Players  map[int]PlayerInfo
 	Kills    []MatchKills
+	Err      error
+}
+
+func (match *MatchData) GetPlayersName() []string {
+	players := make([]string, 0)
+	for _, player := range match.Players {
+		players = append(players, player.Name)
+	}
+	return players
+}
+
+func NewMatchStatistics() MatchStatistics {
+	return MatchStatistics{
+		PlayersName: []string{},
+		Kills:       map[string]int{},
+	}
 }
 
 type MatchStatistics struct {
-	TotalKills int            `json:"total_kills"`
-	Players    map[int]string `json:"players"`
-	Kills      map[string]int `json:"kills"`
+	TotalKills  int            `json:"total_kills"`
+	PlayersName []string       `json:"players"`
+	Kills       map[string]int `json:"kills"`
 }
 
 type MatchDeathStatistics struct {
