@@ -50,7 +50,6 @@ func TestQuake3Arena_CollectStatisticsFromLog(t *testing.T) {
 
 			statistics, err := quakeParser.CollectStatisticsFromLog(loggerContent)
 			tt.wantResult(t, statistics, err)
-
 		})
 	}
 }

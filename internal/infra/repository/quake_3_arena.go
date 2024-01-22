@@ -14,46 +14,53 @@ const (
 	userInfoEntry  = "ClientUserinfoChanged:"
 	item           = "Item:"
 	killEntry      = "Kill:"
+	logSeparator   = " "
 )
 
 func NewQuake3ArenaParser() repository.LogParser {
-	return &quake3Arena{}
+	lineHandler := make(map[string]lineHandlerFunc)
+	lineHandler[startGameEntry] = parseInitGame
+	lineHandler[userInfoEntry] = parseUserInfo
+	lineHandler[killEntry] = parseKill
+	return &quake3Arena{
+		lineHandler: lineHandler,
+	}
 }
 
+type lineHandlerFunc func(line string, statistics *domain.MatchData) error
 type quake3Arena struct {
+	lineHandler map[string]lineHandlerFunc
 }
 
 func (quake *quake3Arena) CollectStatisticsFromLog(logger []byte) (map[string]domain.MatchData, error) {
-	games := make(map[string]domain.MatchData)
+	matches := make(map[string]domain.MatchData)
 
 	lines := strings.Split(string(logger), "\n")
-	gameLog := make([]string, 0)
-	gameIndex := 1
+	matchLog := make([]string, 0)
+	matchIndex := 1
 	for _, line := range lines {
+		line = strings.TrimSpace(line)
 		if strings.Contains(line, startGameEntry) {
-			gameLog = make([]string, 0)
+			matchLog = make([]string, 0)
 		}
 
-		gameLog = append(gameLog, line)
+		matchLog = append(matchLog, line)
 
 		if strings.Contains(line, endGame) {
-			games[fmt.Sprintf("game_%d", gameIndex)] = parseGame(gameLog)
-			gameIndex++
+			matches[fmt.Sprintf("game_%d", matchIndex)] = quake.parseMatch(matchLog)
+			matchIndex++
 		}
 	}
 
-	return games, nil
+	return matches, nil
 }
 
-func parseGame(log []string) domain.MatchData {
+func (quake *quake3Arena) parseMatch(log []string) domain.MatchData {
 	statistics := domain.NewMatchData()
 	for _, line := range log {
-		if strings.Contains(line, startGameEntry) {
-			parseStartGame(line, &statistics)
-		} else if strings.Contains(line, userInfoEntry) {
-			parseUserInfo(line, &statistics)
-		} else if strings.Contains(line, killEntry) {
-			parseKill(line, &statistics)
+		tokens := strings.Split(line, logSeparator)
+		if lineHandler, ok := quake.lineHandler[tokens[1]]; ok {
+			lineHandler(line, &statistics)
 		}
 	}
 
@@ -91,7 +98,7 @@ func newMatchProperties(line string, propertiesExtractor getPropertiesFromLogFun
 	return attributeMap
 }
 
-func parseStartGame(line string, statistics *domain.MatchData) error {
+func parseInitGame(line string, statistics *domain.MatchData) error {
 	attributeMap := newMatchProperties(line, getPropertiesInitGame)
 	statistics.MapName = attributeMap.getAttributeValue("mapname")
 	statistics.GameName = attributeMap.getAttributeValue("gamename")
