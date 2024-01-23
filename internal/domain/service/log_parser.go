@@ -74,6 +74,44 @@ func calcKillScore(matchData domain.MatchData) map[string]int {
 	return playerName2Score
 }
 
-func (parserService *logParserService) GetKillsByMeans(game int) (map[string]domain.MatchDeathStatistics, error) {
-	return nil, nil
+func (parserService *logParserService) GetKillsByMeans(game int, logger []byte) (map[string]domain.MatchDeathStatistics, error) {
+	parser, err := parserService.factory(game)
+	if err != nil {
+		return nil, fmt.Errorf("could not acquire log parser due to %w", err)
+	}
+
+	matches, err := parser.CollectStatisticsFromLog(logger)
+
+	deathCausesStatistics := make(map[string]domain.MatchDeathStatistics)
+	for matchID, match := range matches {
+		deathCausesStatistics[matchID] = domain.MatchDeathStatistics{
+			KillsByMeans: calcDeathCauses(match),
+		}
+	}
+
+	return deathCausesStatistics, nil
+}
+
+type deathCause2Count map[int]int
+
+func (deathCause deathCause2Count) incDeath(deathID int) {
+	if kills, exists := deathCause[deathID]; exists {
+		deathCause[deathID] = kills + 1
+	} else {
+		deathCause[deathID] = 1
+	}
+}
+
+func calcDeathCauses(match domain.MatchData) map[string]int {
+	deathCauses := make(deathCause2Count)
+	for _, kill := range match.Kills {
+		deathCauses.incDeath(kill.DeathCause)
+	}
+
+	deathCausesStrMap := make(map[string]int)
+	for key, value := range deathCauses {
+		deathCausesStrMap[getDeathCauseByID(key)] = value
+	}
+
+	return deathCausesStrMap
 }
