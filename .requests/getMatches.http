@@ -1,0 +1,14 @@
+###
+POST http://localhost:8080/log-parser/game/1
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="file.csv"
+
+// The 'input.txt' file will be uploaded
+< /home/romano/GolandProjects/cloud-walk/testdata/qgames.log
+--boundary
+Content-Disposition: form-data; name="advertType"
+
+1
+--boundary

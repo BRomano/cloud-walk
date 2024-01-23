@@ -4,7 +4,8 @@ package repository
 import "cloud-walk/internal/domain"
 
 const (
-	Quake3Arena = iota
+	UnknowGame = iota
+	Quake3Arena
 )
 
 type LogParser interface {

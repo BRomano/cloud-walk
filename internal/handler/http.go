@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
 	"strconv"
@@ -17,20 +18,6 @@ type LogParserHTTPHandler struct {
 	LogParserService service.LogParserService
 }
 
-func Error(w http.ResponseWriter, msg error, statusCode int) {
-	render(w, struct {
-		Error string `json:"message"`
-	}{
-		Error: msg.Error(),
-	}, statusCode)
-}
-
-func render(w http.ResponseWriter, data interface{}, statusCode int) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(statusCode)
-	_ = json.NewEncoder(w).Encode(data)
-}
-
 type loggerKey struct{}
 
 func (handler *LogParserHTTPHandler) GetMatchesStatistics(w http.ResponseWriter, r *http.Request) {
@@ -41,8 +28,8 @@ func (handler *LogParserHTTPHandler) GetMatchesStatistics(w http.ResponseWriter,
 	gameIDStr, exists := urlVars["gameID"]
 	if !exists {
 		err := fmt.Errorf("invalid gameID")
-		Error(w, err, http.StatusBadRequest)
 		slog.Error("error getting parameter gameID", "err", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
@@ -52,12 +39,26 @@ func (handler *LogParserHTTPHandler) GetMatchesStatistics(w http.ResponseWriter,
 	gameID, err := strconv.Atoi(gameIDStr)
 	if err != nil {
 		err := fmt.Errorf("could not parse gameID")
-		Error(w, err, http.StatusBadRequest)
 		logger.Error("error converting gameID", "err", err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	statistics, err := handler.LogParserService.GetMatchesStatistics(ctx, gameID, nil)
+	file, _, err := r.FormFile("file")
+	if err != nil {
+		logger.Error("could not handle file due to", "err", err)
+		http.Error(w, "error handling file", http.StatusInternalServerError)
+		return
+	}
+	defer file.Close()
+	fileContent, err := io.ReadAll(file)
+	if err != nil {
+		logger.Error("could not read file, due to", "err", err)
+		http.Error(w, "error on reading file", http.StatusInternalServerError)
+		return
+	}
+
+	statistics, err := handler.LogParserService.GetMatchesStatistics(ctx, gameID, fileContent)
 	if err != nil {
 		logger.Error("could not get game statistics", "err", err)
 		w.WriteHeader(http.StatusInternalServerError)

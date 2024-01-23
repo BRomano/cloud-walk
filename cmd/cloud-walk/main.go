@@ -40,11 +40,11 @@ func main() {
 		panic("error initializing settings")
 	}
 
-	service := app.NewService()
+	s := app.NewService()
 	var waitGroup sync.WaitGroup
 
 	waitGroup.Add(1)
-	go app.startHTTPServer(ctx, &waitGroup, service)
+	go app.startHTTPServer(ctx, &waitGroup, s)
 
 	waitGroup.Wait()
 	slog.Info("service finish gracefully")

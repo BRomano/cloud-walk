@@ -21,8 +21,6 @@ func (app *app) startHTTPServer(ctx context.Context, waitGroup *sync.WaitGroup, 
 	defer waitGroup.Done()
 
 	app.setupHTTPRoutes(ctx, service)
-
-	slog.Info("Starting HTTP server", "port", app.settings.Server.Port, "context", app.settings.Server.Context)
 	httpServer := &http.Server{
 		Addr:           fmt.Sprintf(":%s", app.settings.Server.Port),
 		Handler:        nil,
@@ -48,8 +46,7 @@ func (app *app) startHTTPServer(ctx context.Context, waitGroup *sync.WaitGroup, 
 		}
 	}()
 
-	slog.Info("starting HTTP server", "address", httpServer.Addr)
-
+	slog.Info("starting HTTP server on", "port", app.settings.Server.Port, "context", app.settings.Server.Context)
 	err := httpServer.ListenAndServe()
 	if errors.Is(err, http.ErrServerClosed) {
 		slog.Error("HTTP server failed", "err", err)
