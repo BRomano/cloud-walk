@@ -10,6 +10,7 @@ package mock
 
 import (
 	domain "cloud-walk/internal/domain"
+	context "context"
 	reflect "reflect"
 
 	gomock "go.uber.org/mock/gomock"
@@ -39,16 +40,16 @@ func (m *MockLogParser) EXPECT() *MockLogParserMockRecorder {
 }
 
 // CollectStatisticsFromLog mocks base method.
-func (m *MockLogParser) CollectStatisticsFromLog(logger []byte) (map[string]domain.MatchData, error) {
+func (m *MockLogParser) CollectStatisticsFromLog(ctx context.Context, logger []byte) (map[string]domain.MatchData, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CollectStatisticsFromLog", logger)
+	ret := m.ctrl.Call(m, "CollectStatisticsFromLog", ctx, logger)
 	ret0, _ := ret[0].(map[string]domain.MatchData)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CollectStatisticsFromLog indicates an expected call of CollectStatisticsFromLog.
-func (mr *MockLogParserMockRecorder) CollectStatisticsFromLog(logger any) *gomock.Call {
+func (mr *MockLogParserMockRecorder) CollectStatisticsFromLog(ctx, logger any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CollectStatisticsFromLog", reflect.TypeOf((*MockLogParser)(nil).CollectStatisticsFromLog), logger)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CollectStatisticsFromLog", reflect.TypeOf((*MockLogParser)(nil).CollectStatisticsFromLog), ctx, logger)
 }

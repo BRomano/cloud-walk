@@ -3,6 +3,7 @@ package repository
 import (
 	"cloud-walk/internal/domain"
 	"cloud-walk/internal/domain/repository"
+	"context"
 	"fmt"
 	"strconv"
 	"strings"
@@ -62,9 +63,9 @@ func newAggregateMatchData() aggregateMatchData {
 	return aggregateMatchData{index: 1, matches: make(map[string]*domain.MatchData)}
 }
 
-func (quake *quake3Arena) CollectStatisticsFromLog(logger []byte) (map[string]domain.MatchData, error) {
+func (quake *quake3Arena) CollectStatisticsFromLog(ctx context.Context, logLines []byte) (map[string]domain.MatchData, error) {
 	matches := newAggregateMatchData()
-	lines := strings.Split(string(logger), "\n")
+	lines := strings.Split(string(logLines), "\n")
 	if len(lines) < 2 { //3 lines at least break and InitGame
 		return nil, fmt.Errorf("there is no log to parse")
 	}

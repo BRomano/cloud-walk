@@ -3,6 +3,7 @@ package repository_test
 import (
 	"cloud-walk/internal/domain"
 	"cloud-walk/internal/infra/repository"
+	"context"
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"os"
@@ -113,7 +114,7 @@ func TestQuake3Arena_CollectStatisticsFromLog(t *testing.T) {
 				panic(err)
 			}
 
-			statistics, err := quakeParser.CollectStatisticsFromLog(loggerContent)
+			statistics, err := quakeParser.CollectStatisticsFromLog(context.Background(), loggerContent)
 			tt.wantResult(t, statistics, err)
 		})
 	}

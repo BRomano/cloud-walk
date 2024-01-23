@@ -26,8 +26,8 @@ func TestQuake3Arena_GetGamesStatistics(t *testing.T) {
 		"should parse an ok match for statistics": {
 			filename: "./testdata/q3agame_2score.json",
 			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
-				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
-					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any(), gomock.Any()).
+					DoAndReturn(func(ctx context.Context, log []byte) (map[string]domain.MatchData, error) {
 						matchData := make(map[string]domain.MatchData)
 						err := json.Unmarshal(log, &matchData)
 						return matchData, err
@@ -55,8 +55,8 @@ func TestQuake3Arena_GetGamesStatistics(t *testing.T) {
 		"2 should parse an ok match for statistics": {
 			filename: "./testdata/q3agame_score.json",
 			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
-				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
-					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any(), gomock.Any()).
+					DoAndReturn(func(ctx context.Context, log []byte) (map[string]domain.MatchData, error) {
 						matchData := make(map[string]domain.MatchData)
 						err := json.Unmarshal(log, &matchData)
 						return matchData, err
@@ -84,8 +84,8 @@ func TestQuake3Arena_GetGamesStatistics(t *testing.T) {
 		"2 matchs on the same log": {
 			filename: "./testdata/q3agame_2match_socre.json",
 			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
-				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
-					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any(), gomock.Any()).
+					DoAndReturn(func(ctx context.Context, log []byte) (map[string]domain.MatchData, error) {
 						matchData := make(map[string]domain.MatchData)
 						err := json.Unmarshal(log, &matchData)
 						return matchData, err
@@ -150,20 +150,20 @@ func TestQuake3Arena_GetKillsByMeans(t *testing.T) {
 		wantResult func(t *testing.T, gotMatchStatistics map[string]domain.MatchDeathStatistics, gotErr error)
 	}{
 		"should parse an ok match for death cause": {
-			filename: "./testdata/q3agame_ok_game.json",
+			filename: "./testdata/q3agame_score.json",
 			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
-				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
-					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any(), gomock.Any()).
+					DoAndReturn(func(ctx context.Context, log []byte) (map[string]domain.MatchData, error) {
 						matchData := make(map[string]domain.MatchData)
 						err := json.Unmarshal(log, &matchData)
 						return matchData, err
-					}).AnyTimes()
+					}).Times(1)
 				return f
 			},
 			wantResult: func(t *testing.T, gotDeathCauses map[string]domain.MatchDeathStatistics, gotErr error) {
 				assert.NoError(t, gotErr)
 				wantDeathCauses := map[string]domain.MatchDeathStatistics{
-					"game_1": {
+					"game_001": {
 						KillsByMeans: map[string]int{"MOD_TRIGGER_HURT": 9, "MOD_FALLING": 11, "MOD_ROCKET": 20,
 							"MOD_RAILGUN": 8, "MOD_ROCKET_SPLASH": 51, "MOD_MACHINEGUN": 4, "MOD_SHOTGUN": 2},
 					},
@@ -189,7 +189,7 @@ func TestQuake3Arena_GetKillsByMeans(t *testing.T) {
 				panic(err)
 			}
 
-			deathCauses, err := logParserService.GetKillsByMeans(tt.gameID, loggerContent)
+			deathCauses, err := logParserService.GetKillsByMeans(context.Background(), tt.gameID, loggerContent)
 			tt.wantResult(t, deathCauses, err)
 		})
 	}

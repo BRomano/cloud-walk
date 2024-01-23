@@ -14,7 +14,7 @@ const (
 
 type LogParserService interface {
 	GetMatchesStatistics(ctx context.Context, gameID int, logger []byte) (map[string]domain.MatchStatistics, error)
-	GetKillsByMeans(gameID int, logger []byte) (map[string]domain.MatchDeathStatistics, error)
+	GetKillsByMeans(ctx context.Context, gameID int, logger []byte) (map[string]domain.MatchDeathStatistics, error)
 }
 
 type logParserFactory func(game int) (repository.LogParser, error)
@@ -33,7 +33,7 @@ func (parserService *logParserService) GetMatchesStatistics(ctx context.Context,
 		return nil, fmt.Errorf("could not acquire log parser due to %w", err)
 	}
 
-	matches, err := parser.CollectStatisticsFromLog(logger)
+	matches, err := parser.CollectStatisticsFromLog(ctx, logger)
 	if err != nil {
 		return nil, fmt.Errorf("could not acquire matches statistics due to %w", err)
 	}
@@ -83,13 +83,13 @@ func calcKillScore(matchData domain.MatchData) map[string]int {
 	return playerName2Score
 }
 
-func (parserService *logParserService) GetKillsByMeans(game int, logger []byte) (map[string]domain.MatchDeathStatistics, error) {
+func (parserService *logParserService) GetKillsByMeans(ctx context.Context, game int, logger []byte) (map[string]domain.MatchDeathStatistics, error) {
 	parser, err := parserService.factory(game)
 	if err != nil {
 		return nil, fmt.Errorf("could not acquire log parser due to %w", err)
 	}
 
-	matches, err := parser.CollectStatisticsFromLog(logger)
+	matches, err := parser.CollectStatisticsFromLog(ctx, logger)
 
 	deathCausesStatistics := make(map[string]domain.MatchDeathStatistics)
 	for matchID, match := range matches {
