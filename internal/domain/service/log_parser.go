@@ -4,12 +4,13 @@ package service
 import (
 	"cloud-walk/internal/domain"
 	"cloud-walk/internal/domain/repository"
+	"context"
 	"fmt"
 )
 
 type LogParserService interface {
-	GetGamesStatistics(game int, logger []byte) (map[string]domain.MatchStatistics, error)
-	GetKillsByMeans(game int, logger []byte) (map[string]domain.MatchDeathStatistics, error)
+	GetMatchesStatistics(ctx context.Context, gameID int, logger []byte) (map[string]domain.MatchStatistics, error)
+	GetKillsByMeans(gameID int, logger []byte) (map[string]domain.MatchDeathStatistics, error)
 }
 
 type logParserFactory func(game int) (repository.LogParser, error)
@@ -22,7 +23,7 @@ type logParserService struct {
 	factory logParserFactory
 }
 
-func (parserService *logParserService) GetGamesStatistics(game int, logger []byte) (map[string]domain.MatchStatistics, error) {
+func (parserService *logParserService) GetMatchesStatistics(ctx context.Context, game int, logger []byte) (map[string]domain.MatchStatistics, error) {
 	parser, err := parserService.factory(game)
 	if err != nil {
 		return nil, fmt.Errorf("could not acquire log parser due to %w", err)

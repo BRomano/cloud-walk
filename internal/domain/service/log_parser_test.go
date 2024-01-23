@@ -5,6 +5,7 @@ import (
 	"cloud-walk/internal/domain/repository"
 	"cloud-walk/internal/domain/repository/mock"
 	"cloud-walk/internal/domain/service"
+	"context"
 	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"go.uber.org/mock/gomock"
@@ -69,7 +70,7 @@ func TestQuake3Arena_GetGamesStatistics(t *testing.T) {
 				panic(err)
 			}
 
-			statistics, err := logParserService.GetGamesStatistics(tt.gameID, loggerContent)
+			statistics, err := logParserService.GetMatchesStatistics(context.Background(), tt.gameID, loggerContent)
 			tt.wantResult(t, statistics, err)
 		})
 	}
