@@ -10,11 +10,12 @@ import (
 
 const (
 	startGameEntry = "InitGame:"
-	endGame        = "ShutdownGame:"
+	endGameEntry   = "ShutdownGame:"
 	userInfoEntry  = "ClientUserinfoChanged:"
 	item           = "Item:"
 	killEntry      = "Kill:"
 	logSeparator   = " "
+	breakLog       = "------------------------------------------------------------"
 )
 
 func NewQuake3ArenaParser() repository.LogParser {
@@ -22,6 +23,8 @@ func NewQuake3ArenaParser() repository.LogParser {
 	lineHandler[startGameEntry] = parseInitGame
 	lineHandler[userInfoEntry] = parseUserInfo
 	lineHandler[killEntry] = parseKill
+	lineHandler[endGameEntry] = parseEndGame
+
 	return &quake3Arena{
 		lineHandler: lineHandler,
 	}
@@ -32,36 +35,72 @@ type quake3Arena struct {
 	lineHandler map[string]lineHandlerFunc
 }
 
-func (quake *quake3Arena) CollectStatisticsFromLog(logger []byte) (map[string]domain.MatchData, error) {
-	matches := make(map[string]domain.MatchData)
+type aggregateMatchData struct {
+	index   int
+	matches map[string]*domain.MatchData
+}
 
-	lines := strings.Split(string(logger), "\n")
-	matchLog := make([]string, 0)
-	matchIndex := 1
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
-		if strings.Contains(line, startGameEntry) {
-			matchLog = make([]string, 0)
-		}
+func (aggregate *aggregateMatchData) newItem() *domain.MatchData {
+	newMatchData := domain.NewMatchData()
+	aggregate.matches[fmt.Sprintf("game_%03d", aggregate.index)] = newMatchData
+	aggregate.index++
+	return newMatchData
+}
 
-		matchLog = append(matchLog, line)
-
-		if strings.Contains(line, endGame) {
-			matches[fmt.Sprintf("game_%d", matchIndex)] = quake.parseMatch(matchLog)
-			matchIndex++
+func (aggregate *aggregateMatchData) getValidMatches() map[string]domain.MatchData {
+	result := make(map[string]domain.MatchData)
+	for key, value := range aggregate.matches {
+		if value.HasStarGame || value.HasEndGame {
+			result[key] = *value
 		}
 	}
 
-	return matches, nil
+	return result
 }
 
-func (quake *quake3Arena) parseMatch(log []string) domain.MatchData {
-	statistics := domain.NewMatchData()
-	for _, line := range log {
-		tokens := strings.Split(line, logSeparator)
-		if lineHandler, ok := quake.lineHandler[tokens[1]]; ok {
-			lineHandler(line, &statistics)
+func newAggregateMatchData() aggregateMatchData {
+	return aggregateMatchData{index: 1, matches: make(map[string]*domain.MatchData)}
+}
+
+func (quake *quake3Arena) CollectStatisticsFromLog(logger []byte) (map[string]domain.MatchData, error) {
+	matches := newAggregateMatchData()
+	lines := strings.Split(string(logger), "\n")
+	if len(lines) < 2 { //3 lines at least break and InitGame
+		return nil, fmt.Errorf("there is no log to parse")
+	}
+
+	var matchData *domain.MatchData = nil
+	for _, line := range lines {
+		if matchData == nil {
+			matchData = matches.newItem()
 		}
+		if strings.Contains(line, startGameEntry) && matchData.HasStarGame {
+			matchData = matches.newItem()
+		}
+
+		quake.incMatchData(line, matchData)
+
+		if strings.Contains(line, endGameEntry) && matchData.HasEndGame {
+			matchData = matches.newItem()
+		}
+
+		if strings.Contains(line, breakLog) && (matchData.HasStarGame || matchData.HasEndGame) {
+			matchData = matches.newItem()
+		}
+	}
+
+	return matches.getValidMatches(), nil
+}
+
+func (quake *quake3Arena) incMatchData(logLine string, statistics *domain.MatchData) *domain.MatchData {
+	logLine = strings.TrimSpace(logLine)
+	tokens := strings.Split(logLine, logSeparator)
+	if len(tokens) < 2 {
+		return statistics
+	}
+
+	if lineHandler, ok := quake.lineHandler[tokens[1]]; ok {
+		lineHandler(logLine, statistics)
 	}
 
 	return statistics
@@ -99,6 +138,7 @@ func newMatchProperties(line string, propertiesExtractor getPropertiesFromLogFun
 }
 
 func parseInitGame(line string, statistics *domain.MatchData) error {
+	statistics.HasStarGame = true
 	attributeMap := newMatchProperties(line, getPropertiesInitGame)
 	statistics.MapName = attributeMap.getAttributeValue("mapname")
 	statistics.GameName = attributeMap.getAttributeValue("gamename")
@@ -148,5 +188,10 @@ func parseKill(line string, statistics *domain.MatchData) error {
 		DeathCause: stringToInt(cause),
 	}
 	statistics.Kills = append(statistics.Kills, kill)
+	return nil
+}
+
+func parseEndGame(line string, statistics *domain.MatchData) error {
+	statistics.HasEndGame = true
 	return nil
 }

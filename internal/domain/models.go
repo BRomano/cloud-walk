@@ -11,17 +11,19 @@ type PlayerInfo struct {
 	Model string
 }
 
-func NewMatchData() MatchData {
-	return MatchData{Players: map[int]PlayerInfo{}, Kills: []MatchKills{}}
+func NewMatchData() *MatchData {
+	return &MatchData{Players: map[int]PlayerInfo{}, Kills: []MatchKills{}}
 }
 
 type MatchData struct {
-	GameName string
-	MapName  string
-	Hostname string
-	Players  map[int]PlayerInfo
-	Kills    []MatchKills
-	Err      error
+	GameName    string
+	MapName     string
+	Hostname    string
+	Players     map[int]PlayerInfo
+	Kills       []MatchKills
+	Err         error
+	HasStarGame bool
+	HasEndGame  bool
 }
 
 func (match *MatchData) GetPlayersName() []string {
