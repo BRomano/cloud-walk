@@ -8,6 +8,10 @@ import (
 	"fmt"
 )
 
+const (
+	worldKillerID = 1022
+)
+
 type LogParserService interface {
 	GetMatchesStatistics(ctx context.Context, gameID int, logger []byte) (map[string]domain.MatchStatistics, error)
 	GetKillsByMeans(gameID int, logger []byte) (map[string]domain.MatchDeathStatistics, error)
@@ -61,8 +65,12 @@ func (playersScore playersScoreMap) incScore(playerID int, point int) {
 func calcKillScore(matchData domain.MatchData) map[string]int {
 	playerID2Score := make(playersScoreMap)
 	for _, m := range matchData.Kills {
-		playerID2Score.incScore(m.Killer, 1)
-		playerID2Score.incScore(m.Killed, -1)
+		if m.Killer != m.Killed {
+			playerID2Score.incScore(m.Killer, 1)
+		}
+		if m.Killer == worldKillerID || m.Killed == m.Killer {
+			playerID2Score.incScore(m.Killed, -1)
+		}
 	}
 
 	playerName2Score := make(map[string]int)
