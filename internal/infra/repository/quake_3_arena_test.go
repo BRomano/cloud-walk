@@ -3,6 +3,7 @@ package repository_test
 import (
 	"cloud-walk/internal/domain"
 	"cloud-walk/internal/infra/repository"
+	"encoding/json"
 	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
@@ -89,6 +90,15 @@ func TestQuake3Arena_CollectStatisticsFromLog(t *testing.T) {
 			filename: "./testdata/q3agame_corrupt.log",
 			wantResult: func(t *testing.T, statistics map[string]domain.MatchData, gotErr error) {
 				assert.Error(t, gotErr)
+			},
+		},
+		"ok for complex game": {
+			filename: "./testdata/q3agame_fullgame.log",
+			wantResult: func(t *testing.T, statistics map[string]domain.MatchData, gotErr error) {
+				assert.NoError(t, gotErr)
+				gotStatisticsByte, _ := json.Marshal(statistics)
+				wantStatisticsByte, _ := os.ReadFile("./testdata/q3agame_fullgame.json")
+				assert.Equal(t, gotStatisticsByte, wantStatisticsByte)
 			},
 		},
 	}

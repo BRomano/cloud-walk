@@ -1,14 +1,14 @@
 package domain
 
 type MatchKills struct {
-	Killer     int
-	Killed     int
-	DeathCause int
+	Killer     int `json:"killer"`
+	Killed     int `json:"killed"`
+	DeathCause int `json:"death_cause"`
 }
 
 type PlayerInfo struct {
-	Name  string
-	Model string
+	Name  string `json:"name"`
+	Model string `json:"model"`
 }
 
 func NewMatchData() *MatchData {
@@ -16,11 +16,11 @@ func NewMatchData() *MatchData {
 }
 
 type MatchData struct {
-	GameName    string
-	MapName     string
-	Hostname    string
-	Players     map[int]PlayerInfo
-	Kills       []MatchKills
+	GameName    string             `json:"game_name"`
+	MapName     string             `json:"map_name"`
+	Hostname    string             `json:"hostname"`
+	Players     map[int]PlayerInfo `json:"players"`
+	Kills       []MatchKills       `json:"kills"`
 	Err         error
 	HasStarGame bool
 	HasEndGame  bool

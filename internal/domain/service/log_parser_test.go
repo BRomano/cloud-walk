@@ -24,23 +24,86 @@ func TestQuake3Arena_GetGamesStatistics(t *testing.T) {
 		wantResult func(t *testing.T, gotMatchStatistics map[string]domain.MatchStatistics, gotErr error)
 	}{
 		"should parse an ok match for statistics": {
-			filename: "./testdata/q3agame_ok_game.json",
+			filename: "./testdata/q3agame_2score.json",
 			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
 				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
 					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
 						matchData := make(map[string]domain.MatchData)
 						err := json.Unmarshal(log, &matchData)
 						return matchData, err
-					}).AnyTimes()
+					}).Times(1)
 				return f
 			},
 			wantResult: func(t *testing.T, gotMatchStatistics map[string]domain.MatchStatistics, gotErr error) {
 				assert.NoError(t, gotErr)
 				wantMatchStatistics := map[string]domain.MatchStatistics{
-					"game_1": {
+					"game_001": {
+						TotalKills:  89,
+						PlayersName: []string{"Dono da Bola", "Isgalamido", "Zeh", "Assasinu Credi", "Mal", "Oootsimo"},
+						Kills:       map[string]int{"Isgalamido": 20, "Oootsimo": 14, "Zeh": 12, "Assasinu Credi": 8, "Dono da Bola": -1, "Mal": -4},
+					},
+				}
+				for key := range wantMatchStatistics {
+					if _, exists := gotMatchStatistics[key]; assert.Truef(t, exists, "%#v does not exist on result", key) {
+					}
+					assert.Equalf(t, wantMatchStatistics[key].TotalKills, gotMatchStatistics[key].TotalKills, "Total kills of %#v does not match", key)
+					assert.ElementsMatchf(t, wantMatchStatistics[key].PlayersName, gotMatchStatistics[key].PlayersName, "Players name of %#v does not match", key)
+					assert.Equalf(t, wantMatchStatistics[key].Kills, gotMatchStatistics[key].Kills, "Players name of %#v does not match", key)
+				}
+			},
+		},
+		"2 should parse an ok match for statistics": {
+			filename: "./testdata/q3agame_score.json",
+			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
+					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+						matchData := make(map[string]domain.MatchData)
+						err := json.Unmarshal(log, &matchData)
+						return matchData, err
+					}).Times(1)
+				return f
+			},
+			wantResult: func(t *testing.T, gotMatchStatistics map[string]domain.MatchStatistics, gotErr error) {
+				assert.NoError(t, gotErr)
+				wantMatchStatistics := map[string]domain.MatchStatistics{
+					"game_001": {
 						TotalKills:  105,
 						PlayersName: []string{"Dono da Bola", "Isgalamido", "Zeh", "Assasinu Credi"},
-						Kills:       map[string]int{"Isgalamido": 4, "Dono da Bola": -11, "Zeh": -5, "Assasinu Credi": -8},
+						Kills:       map[string]int{"Isgalamido": 19, "Dono da Bola": 5, "Zeh": 20, "Assasinu Credi": 11},
+					},
+				}
+				for key := range wantMatchStatistics {
+					if _, exists := gotMatchStatistics[key]; assert.Truef(t, exists, "%#v does not exist on result", key) {
+					}
+					assert.Equalf(t, wantMatchStatistics[key].TotalKills, gotMatchStatistics[key].TotalKills, "Total kills of %#v does not match", key)
+					assert.ElementsMatchf(t, wantMatchStatistics[key].PlayersName, gotMatchStatistics[key].PlayersName, "Players name of %#v does not match", key)
+					assert.Equalf(t, wantMatchStatistics[key].Kills, gotMatchStatistics[key].Kills, "Players name of %#v does not match", key)
+				}
+			},
+		},
+		"2 matchs on the same log": {
+			filename: "./testdata/q3agame_2match_socre.json",
+			initializeMock: func(f *mock.MockLogParser) *mock.MockLogParser {
+				f.EXPECT().CollectStatisticsFromLog(gomock.Any()).
+					DoAndReturn(func(log []byte) (map[string]domain.MatchData, error) {
+						matchData := make(map[string]domain.MatchData)
+						err := json.Unmarshal(log, &matchData)
+						return matchData, err
+					}).Times(1)
+				return f
+			},
+			wantResult: func(t *testing.T, gotMatchStatistics map[string]domain.MatchStatistics, gotErr error) {
+				assert.NoError(t, gotErr)
+				wantMatchStatistics := map[string]domain.MatchStatistics{
+					"game_001": {
+						TotalKills:  89,
+						PlayersName: []string{"Dono da Bola", "Isgalamido", "Zeh", "Assasinu Credi", "Mal", "Oootsimo"},
+						Kills:       map[string]int{"Isgalamido": 20, "Oootsimo": 14, "Zeh": 12, "Assasinu Credi": 8, "Dono da Bola": -1, "Mal": -4},
+					},
+					"game_002": {
+						TotalKills:  105,
+						PlayersName: []string{"Dono da Bola", "Isgalamido", "Zeh", "Assasinu Credi"},
+						Kills:       map[string]int{"Isgalamido": 19, "Dono da Bola": 5, "Zeh": 20, "Assasinu Credi": 11},
 					},
 				}
 				for key := range wantMatchStatistics {
