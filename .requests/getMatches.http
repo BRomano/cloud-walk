@@ -1,14 +1,25 @@
-###
-POST http://localhost:8080/log-parser/game/1
+### Death endpoint
+POST http://localhost:8080/log-parser/game/1/deaths
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
-Content-Disposition: form-data; name="file"; filename="file.csv"
+Content-Disposition: form-data; name="file"; filename="qgames.log"
 
-// The 'input.txt' file will be uploaded
-< /home/romano/GolandProjects/cloud-walk/testdata/qgames.log
+< ./qgames.log
 --boundary
 Content-Disposition: form-data; name="advertType"
 
-1
+--boundary
+
+### Matches endpoint
+POST http://localhost:8080/log-parser/game/1/matches
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="qgames.log"
+
+< ./qgames.log
+--boundary
+Content-Disposition: form-data; name="advertType"
+
 --boundary
