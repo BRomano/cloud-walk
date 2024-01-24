@@ -3,7 +3,7 @@
 
 ### Implementation detail
 
-The proposal don't say how I should implement the solution, if a command line or a http server.
+I created a cli and http as a solution.
 So I decide to develop a http server to handle the log file and answer a json object.
 
 The endpoints receive the log file as multipart parse, it is not the best design for something to handle files who can be "big", 
