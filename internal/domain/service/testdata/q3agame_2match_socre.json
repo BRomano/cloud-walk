@@ -1,0 +1,1034 @@
+{
+   "game_001": {
+      "game_name": "baseq3",
+      "map_name": "q3dm17",
+      "hostname": "Code Miner Server",
+      "players": {
+         "2": {
+            "name": "Oootsimo",
+            "model": "razor/id"
+         },
+         "3": {
+            "name": "Isgalamido",
+            "model": "uriel/zael"
+         },
+         "4": {
+            "name": "Zeh",
+            "model": "sarge/default"
+         },
+         "5": {
+            "name": "Dono da Bola",
+            "model": "sarge"
+         },
+         "6": {
+            "name": "Mal",
+            "model": "sarge"
+         },
+         "7": {
+            "name": "Assasinu Credi",
+            "model": "sarge"
+         }
+      },
+      "kills": [
+         {
+            "killer": 1022,
+            "killed": 2,
+            "death_cause": 22
+         },
+         {
+            "killer": 3,
+            "killed": 4,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 2,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 3,
+            "death_cause": 19
+         },
+         {
+            "killer": 5,
+            "killed": 6,
+            "death_cause": 10
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 1022,
+            "killed": 4,
+            "death_cause": 22
+         },
+         {
+            "killer": 3,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 3,
+            "death_cause": 6
+         },
+         {
+            "killer": 2,
+            "killed": 2,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 5,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 7,
+            "killed": 4,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 3,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 3
+         },
+         {
+            "killer": 3,
+            "killed": 6,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 2,
+            "death_cause": 3
+         },
+         {
+            "killer": 3,
+            "killed": 4,
+            "death_cause": 7
+         },
+         {
+            "killer": 5,
+            "killed": 7,
+            "death_cause": 6
+         },
+         {
+            "killer": 3,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 4,
+            "death_cause": 7
+         },
+         {
+            "killer": 5,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 3,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 3,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 2,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 3,
+            "death_cause": 10
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 10
+         },
+         {
+            "killer": 4,
+            "killed": 2,
+            "death_cause": 10
+         },
+         {
+            "killer": 1022,
+            "killed": 3,
+            "death_cause": 22
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 5,
+            "death_cause": 22
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 10
+         },
+         {
+            "killer": 6,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 3
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 4,
+            "death_cause": 19
+         },
+         {
+            "killer": 3,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 1022,
+            "killed": 6,
+            "death_cause": 22
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 7
+         },
+         {
+            "killer": 7,
+            "killed": 5,
+            "death_cause": 10
+         },
+         {
+            "killer": 2,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 6,
+            "death_cause": 6
+         },
+         {
+            "killer": 1022,
+            "killed": 3,
+            "death_cause": 19
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 6
+         },
+         {
+            "killer": 2,
+            "killed": 4,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 4,
+            "death_cause": 10
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 10
+         },
+         {
+            "killer": 5,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 3,
+            "death_cause": 10
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 6,
+            "death_cause": 22
+         },
+         {
+            "killer": 1022,
+            "killed": 7,
+            "death_cause": 22
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 6
+         },
+         {
+            "killer": 7,
+            "killed": 2,
+            "death_cause": 3
+         },
+         {
+            "killer": 4,
+            "killed": 3,
+            "death_cause": 6
+         },
+         {
+            "killer": 2,
+            "killed": 7,
+            "death_cause": 6
+         },
+         {
+            "killer": 4,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 4,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 2,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 7,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 3,
+            "death_cause": 19
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 2,
+            "killed": 5,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 1
+         },
+         {
+            "killer": 7,
+            "killed": 6,
+            "death_cause": 6
+         },
+         {
+            "killer": 1022,
+            "killed": 7,
+            "death_cause": 19
+         },
+         {
+            "killer": 4,
+            "killed": 2,
+            "death_cause": 7
+         },
+         {
+            "killer": 4,
+            "killed": 3,
+            "death_cause": 7
+         },
+         {
+            "killer": 1022,
+            "killed": 6,
+            "death_cause": 19
+         },
+         {
+            "killer": 4,
+            "killed": 7,
+            "death_cause": 6
+         },
+         {
+            "killer": 1022,
+            "killed": 5,
+            "death_cause": 22
+         },
+         {
+            "killer": 2,
+            "killed": 6,
+            "death_cause": 7
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 10
+         },
+         {
+            "killer": 1022,
+            "killed": 4,
+            "death_cause": 22
+         },
+         {
+            "killer": 3,
+            "killed": 4,
+            "death_cause": 10
+         },
+         {
+            "killer": 3,
+            "killed": 2,
+            "death_cause": 10
+         }
+      ],
+      "Err": null,
+      "HasStarGame": true,
+      "HasEndGame": true
+   },
+   "game_002": {
+      "GameName": "baseq3",
+      "MapName": "q3dm17",
+      "Hostname": "Code Miner Server",
+      "Players": {
+         "2": {
+            "Name": "Dono da Bola",
+            "Model": "sarge"
+         },
+         "3": {
+            "Name": "Isgalamido",
+            "Model": "uriel/zael"
+         },
+         "4": {
+            "Name": "Zeh",
+            "Model": "sarge/default"
+         },
+         "5": {
+            "Name": "Assasinu Credi",
+            "Model": "sarge"
+         }
+      },
+      "Kills": [
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 3,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 5,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 3
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 3
+         },
+         {
+            "Killer": 2,
+            "Killed": 3,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 2,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 3,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 2,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 1022,
+            "Killed": 4,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 5,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 1
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 4,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 2,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 3
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 1
+         },
+         {
+            "Killer": 5,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 5,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 5,
+            "Killed": 3,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 3
+         },
+         {
+            "Killer": 1022,
+            "Killed": 5,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 2,
+            "Killed": 4,
+            "DeathCause": 10
+         },
+         {
+            "Killer": 3,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 3,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 2,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 4,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 5,
+            "Killed": 5,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 1022,
+            "Killed": 4,
+            "DeathCause": 22
+         },
+         {
+            "Killer": 1022,
+            "Killed": 5,
+            "DeathCause": 19
+         },
+         {
+            "Killer": 4,
+            "Killed": 2,
+            "DeathCause": 7
+         },
+         {
+            "Killer": 3,
+            "Killed": 5,
+            "DeathCause": 6
+         },
+         {
+            "Killer": 4,
+            "Killed": 3,
+            "DeathCause": 7
+         }
+      ],
+      "Err": null
+   }
+}
