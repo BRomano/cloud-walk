@@ -3,8 +3,9 @@
 
 ### Implementation detail
 
-I created a cli and http as a solution.
-So I decide to develop a http server to handle the log file and answer a json object.
+I've created a cli and http as a solution.
+
+I decide to develop a http server to explore more about design and development.
 
 The endpoints receive the log file as multipart parse, it is not the best design for something to handle files who can be "big", 
 but I understand it is to show some development abilities.
