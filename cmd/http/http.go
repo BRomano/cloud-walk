@@ -65,7 +65,8 @@ func (app *app) setupHTTPRoutes(ctx context.Context, service service.LogParserSe
 		LogParserService: service,
 	}
 
-	appRouter.HandleFunc("/game/{gameID}", logParserHandler.GetMatchesStatistics).Methods(http.MethodPost)
+	appRouter.HandleFunc("/game/{gameID}/matches", logParserHandler.GetMatchesStatistics).Methods(http.MethodPost)
+	appRouter.HandleFunc("/game/{gameID}/deaths", logParserHandler.GetKillsByMeans).Methods(http.MethodPost)
 
 	healthRouter := router.PathPrefix(prefix).Subrouter()
 	healthRouter.Handle("/health", health.NewHandler()).Methods(http.MethodGet)

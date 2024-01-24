@@ -1,7 +1,7 @@
 ARG GO_VERSION=1.21.6
 
 FROM golang:${GO_VERSION} as builder
-ARG MAIN_PATH="./cmd/cloud-walk"
+ARG MAIN_PATH="./cmd/http"
 
 WORKDIR /build
 ADD . .

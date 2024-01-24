@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: log_parser
+    restart: on-failure
+    environment:
+      SERVER_CONTEXT: log-parser
+    ports:
+      - 8080:8080
+
